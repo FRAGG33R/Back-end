@@ -1,11 +1,16 @@
 const express = require('express');
 const app = express();
-const port = 3000
+const path = require('path');
 
 app.get('/', (req, res) => {
-	res.send("Hello world !");
-	// you can also render a page content like in the first node server
-	res.end();
+
+	res.sendFile(path.join(__dirname, 'index.html'))
+
+})
+
+app.get('*', (req, res) => {
+	res.status(404).send('<h1>Oops - 404 page not found </p>')
+
 })
 
 app.listen(3000);
